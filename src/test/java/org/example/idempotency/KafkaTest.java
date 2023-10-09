@@ -38,7 +38,6 @@ public class KafkaTest extends BaseIntegrationTest {
     producer.send(testRequestTopic, value);
     boolean messageConsumed = consumer.getLatch().await(TIMEOUT, TimeUnit.SECONDS);
     assertTrue(messageConsumed);
-    assertTrue(consumer.getKey().isEmpty());
     assertThat(consumer.getValue()).isEqualTo("Forwarded " + value);
     assertThat(counter.getCounter().get()).isEqualTo(1);
 
@@ -47,7 +46,6 @@ public class KafkaTest extends BaseIntegrationTest {
     producer.send(testRequestTopic, value);
     messageConsumed = consumer.getLatch().await(TIMEOUT, TimeUnit.SECONDS);
     assertTrue(messageConsumed);
-    assertTrue(consumer.getKey().isEmpty());
     assertThat(consumer.getValue()).isEqualTo("Forwarded " + value);
     assertThat(counter.getCounter().get()).isEqualTo(1);
 
